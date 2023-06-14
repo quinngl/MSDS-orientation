@@ -1,0 +1,38 @@
+---
+title: "Orientation Histogram"
+author: "Quinn Glovier"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Library
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+# Loading in the data set
+```{r}
+o <- read_csv("/Users/quinnglovier/Desktop/orientation.csv")
+view(o)
+o$`CPU Number of Cores (int)` <- as.integer(o$`CPU Number of Cores (int)`)
+table(o$`CPU Number of Cores (int)`)
+```
+
+#Histogram
+```{r}
+p <- ggplot(o, aes(o$`CPU Number of Cores (int)`))+
+  geom_histogram(bins = 7, fill = "#5A9367", color = "#44633F")+
+  theme_bw()+
+  labs(title = "Distribution of CPU Number of Cores",
+       subtitle = "UVA Residential MSDS Class of 2024",
+       x = "Number of Cores",
+       y = "Count")
+p
+```
+
